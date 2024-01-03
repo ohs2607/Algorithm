@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /* 중복된 문자 제거 */
-// ksekkset
+// ksekkset -> kset
 public class RemoveDuplication {
 
     public static void main(String[] args) {
