@@ -7,10 +7,9 @@ import java.util.Scanner;
  * 같은 문자가 연속으로 반복되는 경우
  * 반복되는 문자 바로 오른쪽에 반복 횟수를 표기하는 방법으로
  * 문자열을 압축하는 프로그램을 작성하시오.
- *
  * 반복 횟수가 1이면 생략 (숫자만 생략이지 알파벳은 그대로 써줘야 함)
- * KKHSSSSSSSE -> K2HS7E
  */
+// KKHSSSSSSSE -> K2HS7E
 public class StrCompression {
 
     public static void main(String[] args) {
