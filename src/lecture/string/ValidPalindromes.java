@@ -2,7 +2,8 @@ package lecture.string;
 
 import java.util.Scanner;
 
-/** 회문 문자열 - 2
+// 회문 문자열 - 2
+/**
  * found7, time: study; Yduts; emit, 7Dnuof
  * 알파벳만 비교하고, 숫자나 특수문자는 비교대상에서 제외한다
  */
