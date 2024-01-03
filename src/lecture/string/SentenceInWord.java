@@ -3,9 +3,8 @@ package lecture.string;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-/** 문장 속에서 가장 길이가 긴 단어 출력
- *  it is time to study -> study
- */
+// 문장 속에서 가장 길이가 긴 단어 출력
+// it is time to study -> study
 public class SentenceInWord {
 
     public static void main(String[] args) {
