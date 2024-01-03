@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+// 대소문자 변환
+// StuDY -> sTUdy
 public class ChangeLetterCase {
 
     public static void main(String[] args) throws IOException {
