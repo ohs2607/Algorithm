@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /* 자연수 N이 입력되면 1부터 N까지의 소수의 개수를 출력 */
 // 소수는 약수가 1과 자기 자신밖에 없는 수 (1은 제외)
-public class Decimal_TimeLimitExceeded {
+public class Prime_TimeLimitExceeded {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
