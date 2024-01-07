@@ -3,7 +3,7 @@ package lecture.array;
 import java.util.Scanner;
 
 /* 에라토스테네스체 */
-public class Decimal {
+public class Prime {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
