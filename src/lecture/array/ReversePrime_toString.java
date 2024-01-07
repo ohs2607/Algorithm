@@ -10,7 +10,7 @@ import java.util.Scanner;
 9
 32 55 62 20 250 370 200 30 100
 */
-public class ReversePrime {
+public class ReversePrime_toString {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
