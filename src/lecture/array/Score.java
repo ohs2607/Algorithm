@@ -23,19 +23,24 @@ public class Score {
     }
 
     static int solution(int n, int[] arr){
-        int result = 0;
-        int plus = 0;
+        int result = 0, plus = 0;
 
-        // 바로 앞의 요소 확인
         for (int i=0; i<n; i++){
-            // 정답이면서 바로 앞 문제도 정답인 경우
-            if (i > 0){
+            // 1. 정답이면서 바로 앞 문제도 정답인 경우 (바로 앞의 요소 확인) - 불필요한 코드가 많음
+            /**if (i > 0){
                 if (arr[i] == 1 && arr[i-1] == 1) plus = plus + arr[i];
             }
             result += arr[i];
-
             if (arr[i] == 0) plus = 0;
-            result += plus;
+            result += plus;*/
+
+            // 2. 간단하게 풀기
+            if (arr[i] == 1){
+                plus++;
+                result += plus;
+            } else {
+                plus = 0;
+            }
         }
         return result;
     }
