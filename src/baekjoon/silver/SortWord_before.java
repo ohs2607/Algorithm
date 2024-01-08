@@ -3,7 +3,7 @@ package baekjoon.silver;
 import java.util.*;
 
 /* 길이가 짧은 순서부터, 길이가 같으면 사전순, 중복은 제거 */
-public class SortWord {
+public class SortWord_before {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
