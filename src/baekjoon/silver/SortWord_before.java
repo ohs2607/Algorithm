@@ -18,7 +18,7 @@ public class SortWord_before {
         }
     }
 
-    static List<String> solution(int cnt, String[] wArr) {
+    static Set<String> solution(int cnt, String[] wArr) {
         /* sort를 재정의한다 */
         /**
          * 파라미터가 1개인 sort는 Comparator를 default로 정렬해왔던것. 정수의 경우에는 문제 없지만
@@ -44,12 +44,16 @@ public class SortWord_before {
         });
 
         /* 2. 중복 제거  */
+        // 2-1. 배열을 List에 옮겨 닮기 (contains로 존재를 확인하며 담는다 - 비효율)
         List<String> result = new ArrayList<>();
         for (String str : wArr) {
             if (!result.contains(str)) result.add(str);
         }
 
-        return result;
+        // 2-2. 중복을 허용하지 않으면서 들어온 순서를 유지하는 LinkedHashSet 사용
+        Set<String> resultSet = new LinkedHashSet<>(List.of(wArr));
+
+        return resultSet;
     }
 
 
