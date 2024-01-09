@@ -10,8 +10,8 @@ public class MaxSum {
         int n = sc.nextInt();
         int[][] arr = new int[n][n];
 
-        for (int i=0; i<n; i++){
-            for (int j=0; j<n; j++){
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 arr[i][j] = sc.nextInt();
             }
         }
@@ -19,7 +19,7 @@ public class MaxSum {
         System.out.println(solution(n, arr));
     }
 
-    static int solution(int n, int[][] arr){
+    static int solution(int n, int[][] arr) {
         // 각 행의 합, 열의 합, 두 대각선의 합
         int width = 0, len = 0;
 
@@ -29,8 +29,8 @@ public class MaxSum {
         int max = 0, lSum = 0, rSum = 0;
 
         // 1. 각 행, 열의 합중 최대값
-        for (int i=0; i<n; i++){
-            for (int j=0; j<n; j++){
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 width += arr[i][j];
                 len += arr[j][i];
             }
@@ -44,16 +44,12 @@ public class MaxSum {
         Arrays.sort(widthArr);
         Arrays.sort(lenArr);
 
-        max = Math.max(widthArr[n-1], lenArr[n-1]);
+        max = Math.max(widthArr[n - 1], lenArr[n - 1]);
 
         // 대각선 비교
-        for (int i=0; i<n; i++){
-            for (int j=i; j<=i ;j++){
-                lSum += arr[i][j];
-            }
-            for (int j=n-i-1; j>=n-i-1 ;j--){
-                rSum += arr[i][j];
-            }
+        for (int i = 0; i < n; i++) {
+            lSum += arr[i][i];
+            rSum += arr[i][n - i - 1];
         }
 
         if (max <= (Math.max(lSum, rSum))) {
