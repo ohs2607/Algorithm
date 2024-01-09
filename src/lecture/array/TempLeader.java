@@ -49,19 +49,7 @@ public class TempLeader {
         4,1 4,2 4,3 4,4 4,5
         5,1 5,2 5,3 5,4 5,5
          */
-        for (int i=1; i<=n; i++){
 
-            for (int j=1; j<=n; j++){
-                for (int k=1; k<=n-j; k++){
-                    // 위, 아래 둘 다 비교해야함
-                    if (arr[j][i] == arr[j+k][i]){
-                        student[j]++;
-                    }
-                }
-            }
-        }
-        System.out.println(Arrays.toString(student));
-        Arrays.sort(student);
 
         return student[n-1];
     }
