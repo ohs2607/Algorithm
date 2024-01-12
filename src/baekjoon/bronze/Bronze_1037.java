@@ -10,5 +10,7 @@ public class Bronze_1037 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
 
+
+
     }
 }

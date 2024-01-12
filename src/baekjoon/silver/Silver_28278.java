@@ -17,47 +17,6 @@ public class Silver_28278 {
         int cnt = Integer.parseInt(br.readLine());
         Stack<Integer> stack = new Stack<>();
 
-        String beforeStr = "";
-        int n = 0, x = 0;
-
-        for (int i=0; i<cnt; i++){
-            beforeStr = br.readLine();
-
-            if (beforeStr.length() != 1){
-                String[] nOne = beforeStr.split(" ");
-                n = Integer.parseInt(nOne[0]);
-                x = Integer.parseInt(nOne[1]);
-            } else {
-                n = Integer.parseInt(beforeStr);
-            }
-
-            if (n == 1) {
-                stack.push(x);
-            } else if (n == 2){
-                if (stack.isEmpty()){
-                    System.out.println(-1);
-                } else {
-                    Integer popNum = stack.pop();
-                    System.out.println(popNum);
-                }
-            } else if (n == 3){
-                System.out.println(stack.size());
-
-            } else if (n == 4){
-                if (stack.isEmpty()) {
-                    System.out.println(1);
-                } else {
-                    System.out.println(0);
-                }
-            } else if (n == 5){
-                if (stack.isEmpty()){
-                    System.out.println(-1);
-                } else {
-                    System.out.println(stack.get(stack.size()-1));
-                }
-            }
-
-        }
 
 
     }
