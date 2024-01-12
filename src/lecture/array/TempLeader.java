@@ -1,58 +1,65 @@
 package lecture.array;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 /**
     그는 자기반 학생 중에서 1학년부터 5학년까지 지내오면서
     한번이라도 같은 반이었던 사람이 가장 많은 학생을 임시 반장으로 정하려 한다.
+    첫 줄에 임시 반장으로 정해진 학생의 번호를 출력한다.
  */
 public class TempLeader {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[][] arr = new int[n+2][n+2];
+        int[][] arr = new int[n][n];
 
-        for (int i=1; i<=n; i++){
-            for (int j=1; j<=n; j++){
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 arr[i][j] = sc.nextInt();
             }
         }
-        // 봉우리와 다르게 가장자리가 0으로만 되어있는게 아니라 0,0을 제외하고 1~n까지로 들어있어야 함
-        // 0,1  0,2  0,3  0,4  0,5
-        for (int j=1; j<=n; j++){
-            arr[0][j] = j;
-            arr[j][0] = j;
-        }
-        for (int i=0; i<n+2; i++){
-            for (int j=0; j<n+2; j++){
-                System.out.print(arr[i][j] + " ");
-            }
-            System.out.println();
-        }
+
         System.out.println(resolve(n, arr));
     }
 
     static int resolve(int n, int[][] arr){
-        int[] student = new int[n];
+        // 같은 열에서 행을 비교해야 하니 i가 변경이 있어야함. j는 i가 다 돌때까지 고정
 
-        // 배열이 주어질때 행은 학생의 번호이고 열은 학년이다.
-        /* 같은 반이었던 학생을 비교하려면, 열 고정 행 비교가 필요하다 */
-        // i,j에서 3,2 자리의 학생이면 , 0,2/1,2/4,2
+        int[] temp = new int[n];
+        int[] result = new int[n]; // 각 학생의 같은반 횟수 결과
 
-        // 제일 원초적으로 생각하는건 아래 위 비교
-        /* 비교대상
-        1,1 1,2 1,3 1,4 1,5
-        2,1 2,2 2,3 2,4 2,5
-        3,1 3,2 3,3 3,4 3,5
-        4,1 4,2 4,3 4,4 4,5
-        5,1 5,2 5,3 5,4 5,5
-         */
+        for (int i=0; i<n; i++){
+            for (int j=0; j<n; j++){
+                // 0,0 1,0 2,0 3,0 4,0  /  1,1 2,1 3,1 4,1 ...
+                // arr[j][i] 이 해당 열에서 몇개가 있는지 확인하면 될텐데
+                // 열을 따로 빼는 방법이 있을텐데 일단 모르니 노가다
+                // 한열을 다 넣고나서 열의 요소 비교
+                for (int k=0; k<n; k++){
+                    temp[k] = arr[k][i];
+                }
+                //System.out.println("temp = " + Arrays.toString(temp));
+                //System.out.println("i: " + i + ", j: " + j + " // " + temp[i] + " " +  arr[j][i]);
+                for (int k=0; k<n; k++){
+                    if (temp[k] == arr[j][i]){
+                        result[k]++;
+                    }
+                }
 
+            }
+            //System.out.println();
+        }
+        //System.out.println("결과: " + Arrays.toString(result));
+        Map<Integer, Integer> rank = new HashMap<>();
+        for (int i=0; i<n; i++){
+            rank.put(result[i], i+1);
+        }
+        List<Integer> list = new ArrayList<>(rank.keySet());
+        list.sort(Comparator.reverseOrder());
 
-        return student[n-1];
+        return rank.get(list.get(0));
     }
+
 }
 /**
 5
