@@ -16,15 +16,36 @@ public class Mentoring {
         Scanner sc = new Scanner(System.in);
         int student = sc.nextInt();
         int count = sc.nextInt();
+        int[][] rank = new int[count][student];
 
-
+        for (int i=0; i<count; i++){
+            for (int j=0; j<student; j++){
+                rank[i][j] = sc.nextInt();
+            }
+        }
+        System.out.println(resolve(student, count, rank));
     }
 
-    static int resolve(){
-        //
-
-
-        return 0;
+    static int resolve(int n, int m, int[][] arr){
+        int answer=0;
+        for(int i=1; i<=n; i++){
+            for(int j=1; j<=n; j++){
+                int cnt=0;
+                for(int k=0; k<m; k++){
+                    int pi=0, pj=0;
+                    for(int s=0; s<n; s++){
+                        if(arr[k][s]==i) pi=s;
+                        if(arr[k][s]==j) pj=s;
+                    }
+                    if(pi<pj) cnt++;
+                }
+                if(cnt==m){
+                    answer++;
+                    //System.out.println(i+" "+j);
+                }
+            }
+        }
+        return answer;
     }
 }
 /**
@@ -32,7 +53,4 @@ public class Mentoring {
 3 4 1 2
 4 3 2 1
 3 1 4 2
-
- 학생수는 4명, 시험 횟수는 3번 - 3행 4열 [3][4]
- 첫번쨰 테스트에서 맨 앞부터 1등을 의미하고 자리의 값은 학생 번호를 의미
  */
