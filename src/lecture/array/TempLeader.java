@@ -16,7 +16,7 @@ public class TempLeader {
         int[][] arr = new int[n + 1][6];
 
         for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n; j++) {
+            for (int j = 1; j <= 5; j++) { // 5학년까지 정해져 있으니 5까지만 받기
                 arr[i][j] = sc.nextInt();
             }
         }
@@ -34,23 +34,18 @@ public class TempLeader {
             for (int j = 1; j <= n; j++) {
                 for (int k = 1; k <= 5; k++) {
                     if (arr[i][k] == arr[j][k]) {
-                        // i=1, j=1일떄 계속 같은거 아니야..?
                         /*
                         1,1 1,1 / 1,2 1,2 / 1,3 1,3
                         1,1 2,1 / 1,2 2,2 / 1,3 2,3
                         1,1 3,1 / 1,2 3,2 / 1,3 3,3
                         한명의 학생이 기준이 되어서 각 학년별로 다른 학생들과 비교
-
-                        */
-
+                        학생 수를 세고 있기 때문에 3번 학생과 4번 학생이 2,3학년때 모두 같은 반이었어도
+                        한번만 카운팅이 되어야 한다 */
                         cnt++;
                         break;
                     }
                 }
             }
-            System.out.println("max = " + max);
-            System.out.println("cnt = " + cnt);
-            System.out.println("-----------------------------");
             if (cnt > max) {
                 max = cnt;
                 answer = i;
@@ -58,7 +53,6 @@ public class TempLeader {
         }
         return answer;
     }
-
 }
 /**
 5
@@ -67,6 +61,4 @@ public class TempLeader {
 5 5 2 4 4
 6 5 2 6 7
 8 4 2 2 2
- * 학생 수를 세고 있기 때문에 3번 학생과 4번 학생이 2,3학년때 모두 같은 반이었어도
- * 한번만 카운팅이 되어야 한다
  */
