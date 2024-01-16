@@ -14,38 +14,46 @@ public class Mentoring {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int student = sc.nextInt();
-        int count = sc.nextInt();
-        int[][] rank = new int[count][student];
 
-        for (int i=0; i<count; i++){
-            for (int j=0; j<student; j++){
-                rank[i][j] = sc.nextInt();
+        // 학생 수 N, 테스트 횟수 M 입력
+        int N = sc.nextInt();
+        int M = sc.nextInt();
+
+        // 학생 등수 기록 배열
+        int[][] rankings = new int[M][N];
+
+        // 테스트 결과 입력 및 등수 기록
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                rankings[i][sc.nextInt() - 1] = j + 1; // 학생 번호는 1부터 시작
+                // 3 4 1 2
             }
         }
-        System.out.println(resolve(student, count, rank));
-    }
 
-    static int resolve(int n, int m, int[][] arr){
-        int answer=0;
-        for(int i=1; i<=n; i++){
-            for(int j=1; j<=n; j++){
-                int cnt=0;
-                for(int k=0; k<m; k++){
-                    int pi=0, pj=0;
-                    for(int s=0; s<n; s++){
-                        if(arr[k][s]==i) pi=s;
-                        if(arr[k][s]==j) pj=s;
+        // 짝의 경우 카운트
+        int count = 0;
+
+        // 모든 학생 쌍에 대해 짝을 찾기
+        for (int mentor = 0; mentor < N; mentor++) {
+            for (int mentee = 0; mentee < N; mentee++) {
+                if (mentor == mentee) continue; // 같은 학생이면 스킵
+
+                boolean isMentorMenteePair = true;
+
+                // M번의 테스트에서 mentor가 mentee보다 항상 앞서야 함
+                for (int i = 0; i < M; i++) {
+                    if (rankings[i][mentor] >= rankings[i][mentee]) {
+                        isMentorMenteePair = false;
+                        break;
                     }
-                    if(pi<pj) cnt++;
                 }
-                if(cnt==m){
-                    answer++;
-                    //System.out.println(i+" "+j);
+
+                if (isMentorMenteePair) {
+                    count++;
                 }
             }
         }
-        return answer;
+        System.out.println(count);
     }
 }
 /**
