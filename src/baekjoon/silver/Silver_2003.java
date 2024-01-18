@@ -3,7 +3,6 @@ package baekjoon.silver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /*
@@ -15,41 +14,48 @@ public class Silver_2003 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int cnt = Integer.parseInt(st.nextToken());
-        int num = Integer.parseInt(st.nextToken());
-        int[] arr = new int[cnt];
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        int[] arr = new int[n + 1]; // 마지막 부분 ArrayIndexOutOfBoundsException 방지용
+        // 그냥 n개대로 개수를 맞추고 while문의 조건을 true로 둔 다음, end와 n이 같아지는 순간 break해도 된다.
 
         StringTokenizer token = new StringTokenizer(br.readLine());
-        for (int i = 0; i < cnt; i++) {
+        for (int i = 0; i < n; i++) {
             arr[i] = Integer.parseInt(token.nextToken());
         }
-        System.out.println(solution(cnt, num, arr));
+        System.out.println(solution(n, m, arr));
     }
 
-    static int solution(int cnt, int num, int[] arr) {
-        int sum = 0;
-        int result = 0; // 합이 sum이 되는 경우
+    static int solution(int n, int m, int[] arr) {
+        int start = 0, end = 0, sum = 0, cnt = 0;
 
-        // 시작점과 끝점을 잡는다 (범위 지정을 위함)
-        int start = 0, end = 0;
+        while (end <= n){
+            if (sum >= m){
+                // 찾는 수보다 sum이 크다면 시작값 뺴주고 앞의 포인터를 옆으로 이동
+                sum -= arr[start];
+                start++;
 
-        while (start < cnt) {
-            if (sum >= num) sum -= arr[start++];//sum이M보다커졌을때,새로운현재값을빼주고,start를한칸앞으로이동한다.
-            else if (end == num) break;
-            else sum += arr[end++];//(sum이M보다작을떄)sum에새로운현재값을더해준후,end포인터를한칸이동
+            } else {
+                // 찾는 수보다 sum이 작다면 그대로 오른쪽 포인터의 값을 더한뒤 옆으로 이동
+                sum += arr[end];
+                end++;
+            }
 
-            if (sum == num) result++;//sum이M과같은값일때
+            if (sum == m){
+                cnt++;
+            }
         }
-
-
-        return result;
+        return cnt;
     }
 }
 /**
  * 4개의 요소, 수열의 A[i] + A[i+1] + … + A[j-1] + A[j]가 2가 되는 경우
+ * 아 떨어져 있으면 안되고 연달아 더한 합이 해당 숫자인 경우
 4 2
 1 1 1 1 -> 3
- * <p>
+
 10 5
 1 2 3 4 2 5 3 1 1 2 -> 3
+
+(2,3 / 5 / 3,1,1)
  */
