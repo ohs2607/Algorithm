@@ -18,13 +18,30 @@ public class Bronze_1546 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
+        int[] arr = new int[n];
 
         int max = 0;
-        //float average = 점수/max*100;
+        //double average = 점수/max*100;
 
+        // 음.. 3개 이상인 경우 최댓값을 제외하고
+        // 가장 마지막에 나온 값으로 새 평균을 계산하는건가?
         for (int i=0; i<n; i++){
-            max = Math.max(max, Integer.parseInt(st.nextToken()));
+            int v = Integer.parseInt(st.nextToken());
+            arr[i] = v;
+            max = Math.max(max, v);
         }
-
+        // 모든 점수에 대해서 값을 바꾸고 다시 평균을 구하는건가? 맞네
+        System.out.println((double) 40/80 *100);
+        System.out.println((double) 80/80 *100);
+        System.out.println((double) 60/80 *100);
+        // 50.0 100.0 75.0
+        System.out.println((75.0+100.0+50.0)/3);
     }
+
+
 }
+/*
+3
+40 80 60
+-> 75.0
+*/
