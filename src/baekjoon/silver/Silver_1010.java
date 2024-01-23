@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
 서쪽의 사이트 개수만큼 (N개) 다리를 지으려고 한다.
 다리끼리는 서로 겹쳐질 수 없다고 할 때 다리를 지을 수 있는 경우의 수를 구하는 프로그램을 작성하라.
  */
-public class Silver_1010 {
+public class Silver_1010 { // 진행중 (1.23)
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
