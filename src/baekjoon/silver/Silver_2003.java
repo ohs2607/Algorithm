@@ -29,7 +29,7 @@ public class Silver_2003 {
     static int solution(int n, int m, int[] arr) {
         int start = 0, end = 0, sum = 0, cnt = 0;
 
-        while (end <= n){
+        while (end < n){
             if (sum >= m){
                 // 찾는 수보다 sum이 크다면 시작값 뺴주고 앞의 포인터를 옆으로 이동
                 sum -= arr[start];
