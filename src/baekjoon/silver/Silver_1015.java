@@ -36,12 +36,33 @@ public class Silver_1015 {
 
         // 1. 비내림차순 배열 b 생성
         int[] b = Arrays.stream(arr).sorted().toArray();
+        System.out.println(Arrays.toString(b));
 
         for (int i=0; i<n; i++){
-            b[p[i]] = arr[i];
+            // a : 2 3 1
+            // b : 1 2 3
+            //b[p[i]] = arr[i];
 
+            for (int j=0; j<n; j++){
+                if (b[j] == arr[i]){
+                    // 같은 값일때의 index인 j가 p[i]값
+                    // 같은 수가 들어오지 못하게 순서대로 오도록 어떻게 막지
+                    p[i] = j;
+                }
+            }
         }
-
+        for (int i : p) {
+            System.out.print(i + " ");
+        }
     }
-
 }
+/*
+a : 2 1 3 1
+b : 1 1 2 3
+b[p[i]] = a[i]
+
+b[p[0]] = a[0] = 2 -> b가 2가되는 자리는 2 -> p[0] = 2
+b[p[1]] = a[1] = 1 -> b가 1이되는 자리는 0,1 -> p[1] = 0,1
+b[p[2]] = a[2] = 3 -> b가 3이되는 자리는 3 -> p[2] = 3
+b[p[3]] = a[3] = 1 -> b가 1이되는 자리는 0,1 -> p[3] = 0,1
+ */
