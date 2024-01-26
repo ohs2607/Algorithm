@@ -3,8 +3,7 @@ package baekjoon.silver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /*  [수열 P 출력하기]
     P[0], P[1], ...., P[N-1]은 0부터 N-1까지(포함)의 수를 한 번씩 포함하고 있는 수열
@@ -21,6 +20,7 @@ public class Silver_1015 {
         int n = Integer.parseInt(br.readLine());
         int[] arr = new int[n];
         int[] p = new int[n];
+        Map<Integer, Integer> pMap = new HashMap<>();
 
         StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i=0; i<n; i++){
@@ -36,7 +36,7 @@ public class Silver_1015 {
 
         // 1. 비내림차순 배열 b 생성
         int[] b = Arrays.stream(arr).sorted().toArray();
-        System.out.println(Arrays.toString(b));
+        //System.out.println(Arrays.toString(b));
 
         for (int i=0; i<n; i++){
             // a : 2 3 1
@@ -46,8 +46,16 @@ public class Silver_1015 {
             for (int j=0; j<n; j++){
                 if (b[j] == arr[i]){
                     // 같은 값일때의 index인 j가 p[i]값
-                    // 같은 수가 들어오지 못하게 순서대로 오도록 어떻게 막지
-                    p[i] = j;
+                    if (!pMap.containsKey(arr[i])){
+                        p[i] = j;
+                        pMap.put(arr[i], j);
+                        break; // 해당값을 넣고 나가기
+                    } else {
+                        // 이미 있는 값이면 배열에서 해당 값을 가져와 하나를 늘려서 넣기
+                        p[i] = pMap.get(arr[i]) + 1;
+                        pMap.put(arr[i], p[i]); // 자릿수 value를 업데이트 해줌
+                        break;
+                    }
                 }
             }
         }
@@ -62,7 +70,7 @@ b : 1 1 2 3
 b[p[i]] = a[i]
 
 b[p[0]] = a[0] = 2 -> b가 2가되는 자리는 2 -> p[0] = 2
-b[p[1]] = a[1] = 1 -> b가 1이되는 자리는 0,1 -> p[1] = 0,1
+b[p[1]] = a[1] = 1 -> b가 1이되는 자리는 0,1 -> p[1] = 0,1 여기서는 0이 들어가야하고
 b[p[2]] = a[2] = 3 -> b가 3이되는 자리는 3 -> p[2] = 3
-b[p[3]] = a[3] = 1 -> b가 1이되는 자리는 0,1 -> p[3] = 0,1
+b[p[3]] = a[3] = 1 -> b가 1이되는 자리는 0,1 -> p[3] = 0,1 여기서는 1이 들어와야하는데
  */
