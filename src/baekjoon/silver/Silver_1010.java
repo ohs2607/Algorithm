@@ -3,6 +3,8 @@ package baekjoon.silver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.util.Objects;
 import java.util.StringTokenizer;
 
 /* 다리놓기 (nCr - 조합 사용 문제 : 서로다른 n개에서 r개를 뽑는다)
@@ -25,17 +27,24 @@ public class Silver_1010 { // 진행중 (1.23)
         /* mCn (m >= n) */
         for (int i=0; i<tc; i++){
             StringTokenizer st = new StringTokenizer(br.readLine());
-            int n = Integer.parseInt(st.nextToken());
-            int m = Integer.parseInt(st.nextToken());
 
-            if (n == m || n ==0) System.out.println(1);
+            /* 연산시 int의 범위를 초과하는 경우가 있기 때문에 type은 BigInteger로 두기 */
+            BigInteger n = new BigInteger(st.nextToken());
+            BigInteger m = new BigInteger(st.nextToken());
 
-
+            // m! / (m-n)! * n!
+            BigInteger result = factorial(m).divide((factorial(m.subtract(n)).multiply(factorial(n))));
+            System.out.println(result);
         }
-
-
     }
 
+    static BigInteger factorial(BigInteger n){
+        if (Objects.equals(n, new BigInteger("0"))){
+            return new BigInteger("1");
+        } else {
+            return n.multiply(factorial(n.subtract(new BigInteger("1"))));
+        }
+    }
 }
 /*
 3
