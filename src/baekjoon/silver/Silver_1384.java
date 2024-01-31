@@ -3,7 +3,6 @@ package baekjoon.silver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -21,43 +20,75 @@ public class Silver_1384 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String str = "";
         int groupNum = 1;
+        Map<Integer, String[]> list = new HashMap<>();
 
-        while ((str = br.readLine()).charAt(0) != '0'){
-            Map<Integer, String> map = new HashMap<>();
-            Map<Integer, String> result = new HashMap<>();
-            int person = Integer.parseInt(str);
-            int pNum = 1;
+        while (true){
+            int pNum = Integer.parseInt(br.readLine());
+            if (pNum == 0) break;
 
-            for (int x=0; x<person; x++){
+            System.out.println("Group " + groupNum++);
+            // 아 입력 순서는 앉은 순서
+            // 한줄에 P와 N이 나열된 순서는 왼쪽으로 돌린 순서 (따라서 앉은 순서와 반대방향)
+            // A P N P P 라면
+            /* A=1, B=2, C=3, D=4, E=5 */
+            // 5 4 3 2 순서로 적음 , 4가 N이며 4는 Dabby -> Debby was nasty about Ann
+
+            for (int i=0; i<pNum; i++){
                 StringTokenizer st = new StringTokenizer(br.readLine());
-                String[] arr = new String[person];
+                String[] arr = new String[pNum];
 
-                for (int i=0; i<person; i++){
-                    arr[i] = st.nextToken();
-                    if (i == 0) {
-                        map.put(pNum++, arr[i]);
-                    }
+                for (int j=0; j<pNum; j++){
+                    arr[j] = st.nextToken();
                 }
-                System.out.println(Arrays.toString(arr));
-                for (int i=0; i<person; i++){
-                    // 1~5라고 하면, 왼쪽사람이고, Ann이 1일때 빼줘야해, 두번째가 N이면 1-2 = -1인데 데비는 4번. 여기에 인원수를 더하면 되나..? (아 음수면?)
-                    // 데비가 bob한테 욕먹었는데, 데비는 4 4-2 = 2
-                    if (arr[i].equals("N")) {
-                        // 욕한사람 자리, 욕먹은사람
-                        result.put(i+2, arr[0]);
-                    }
-                }
-
+                list.put(i+1, arr);
             }
-            System.out.println(map.toString());
-            System.out.println(result.toString());
 
+            boolean hasNasty = false;
+            for (int i=0; i<pNum; i++){
 
-            String name = "";
+                for (int j=1; j<pNum; j++){
+                    if (list.get(i+1)[j].equals("N")){
+                        String nPerson = "";
+
+                        if ((i + 1) - j < 0){
+                            nPerson = list.get((i + 1) - j + pNum)[0];
+                        } else {
+                            nPerson = list.get((i + 1) - j)[0];
+                        }
+                        hasNasty = true;
+                        System.out.println(nPerson + " was nasty about " + list.get(i+1)[0]);
+                    }
+                }
+            }
+            if (!hasNasty){
+                System.out.println("Nobody was nasty");
+            }
+            System.out.println();
         }
     }
-
-
 }
+
+/*
+5
+Ann P N P P
+Bob P P P P
+Clive P P P P
+Debby P N P P
+Eunice P P P P
+6
+Zheng P P P P P
+Yeng P P P P P
+Xiao P P P P P
+Will P P P P P
+Veronica P P P P P
+Utah P P P P P
+0
+
+Group 1
+Debby was nasty about Ann
+Bob was nasty about Debby
+
+Group 2
+Nobody was nasty
+*/
