@@ -3,7 +3,6 @@ package baekjoon.silver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 /*
@@ -11,7 +10,7 @@ N개의 수 A1, A2, ..., AN과 L이 주어진다.
 Di = Ai-L+1 ~ Ai 중의 최솟값이라고 할 때, D에 저장된 수를 출력하는 프로그램을 작성하시오.
 이때, i ≤ 0 인 Ai는 무시하고 D를 구해야 한다. (i는 1~N)
  */
-public class Silver_11003 {
+public class Silver_11003 { // 진행중
     // 1차 시도 : PriorityQueue - 정답은 나오지만 제출 결과는 시간 초과.
     /* Deque - 양쪽에 데이터를 넣고 뺄 수 있는 형태의 자료구조
                하나의 자료구조에 큐, 스택을 합쳐놓은 형태
