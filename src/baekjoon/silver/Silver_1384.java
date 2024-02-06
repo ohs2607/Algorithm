@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
     자신의 이름이 맨 위에 적힌 종이를 받으면 활동을 종료
  */
 // 아이들의 수 -> n
-public class Silver_1384 {
+public class Silver_1384 { // 진행중
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
