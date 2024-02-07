@@ -19,15 +19,8 @@ public class Hash_1 {
         int n = Integer.parseInt(br.readLine());
         String str = br.readLine();
 
-        for (int i=0; i<str.length(); i++){
-            char c = str.charAt(i);
-
-            if (!map.containsKey(c)){
-                map.put(c, 1);
-            } else {
-                // value는 덮어씌워짐
-                map.put(c, map.get(c)+1);
-            }
+        for (char c : str.toCharArray()){
+            map.put(c, map.getOrDefault(c, 0) + 1);
         }
 
         /* map의 value로 정렬하기 */
