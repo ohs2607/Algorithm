@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.HashMap;
 
 /*
 Anagram이란 두 문자열이 알파벳의 나열 순서를 다르지만 그 구성이 일치하면 두 단어는 아나그램이라고 합니다.
@@ -14,21 +15,38 @@ Anagram이란 두 문자열이 알파벳의 나열 순서를 다르지만 그 �
 public class Anagram_2 {
 
     public static void main(String[] args) throws IOException {
-        // 동일한 문자들과 그 개수들까지 일치하면 아나그램
+        // 동일한 문자들과 그 개수들까지 일치하면 아나그램 (길이가 같음)
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String str1 = br.readLine();
         String str2 = br.readLine();
 
-        char[] cArr1 = str1.toCharArray();
-        char[] cArr2 = str2.toCharArray();
+        System.out.println(solution(str1, str2));
+    }
 
-        Arrays.sort(cArr1);
-        Arrays.sort(cArr2);
+    static String solution(String str1, String str2){
+        String answer = "YES";
 
-        String result1 = Arrays.toString(cArr1);
-        String result2 = Arrays.toString(cArr2);
-
-        System.out.println(result1.equals(result2) ? "YES" : "NO");
-
+        // 2. HashMap으로 풀기
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (char x : str1.toCharArray()) {
+            // map에 첫번째 단어와 등장 횟수(비교기준) 담기 - 순서가 상관없고 구성만 같으면 되니 갯수로 확인
+            map.put(x, map.getOrDefault(x, 0)+1);
+        }
+        for (char x : str2.toCharArray()) {
+            // 해당 문자가 맵에 있는지 없는지, 키가 있다면 횟수를 하나 감소
+            /* value가 0인데 해당 if문을 들어왔다는 것은 기준 문자열안의 해당 문자 갯수보다
+               두번째 문자열의 해당 문자 갯수가 더 많다는 것
+               따라서 바로 종료
+            */
+            if(!map.containsKey(x) || map.get(x) == 0){
+                return "NO";
+            }
+            map.put(x, map.get(x)-1);
+        }
+        return answer;
     }
 }
+/*
+AbaAeCe
+baeeACA
+*/
