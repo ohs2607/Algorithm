@@ -23,8 +23,8 @@ public class Hash_1 {
             map.put(c, map.getOrDefault(c, 0) + 1);
         }
 
-        /* map의 value로 정렬하기 */
-        /*// 1. key값으로 새로운 리스트를 만듦.
+        /* 방법1. map의 value로 정렬하기 람다식 사용 */
+        // 1. key값으로 새로운 리스트를 만듦.
         ArrayList<Character> keys = new ArrayList<>(map.keySet());
 
         // 2. 정렬을 하는데, 키값으로 value를 비교한다
@@ -32,10 +32,10 @@ public class Hash_1 {
         Collections.sort(keys, (v2, v1) -> (map.get(v1).compareTo(map.get(v2))));
 
         // 역순정렬이니 제일 많은것이 제일 첫번째에 옴
-        System.out.println(keys.get(0));*/
+        System.out.println(keys.get(0));
 
-        // max값 두고 for문에서 비교로 구하기
-        char answer=' ';
+        // max값 두고 for문에서 비교로 구하기 - 첫번째 방법보다 번거로워 보임
+        /**char answer=' ';
         int max=Integer.MIN_VALUE;
         for(char key : map.keySet()){
             //System.out.println(key+" "+map.get(key));
@@ -44,7 +44,7 @@ public class Hash_1 {
                 answer=key;
             }
         }
-        System.out.println(answer);
+        System.out.println(answer);*/
     }
 }
 /*
