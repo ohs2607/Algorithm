@@ -3,11 +3,12 @@ package lecture.hash_tree;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 /*
-    7 4
-    20 12 20 10 23 17 10
+7 4
+20 12 20 10 23 17 10
 
     3 4 4 3
     n일 동안의 매출액 종류
@@ -26,14 +27,13 @@ public class Hash_3 {
 
         int day = (n / k) * k;
         for (int i=0; i<day; i++){
-
+            HashMap<Integer, Integer> map = new HashMap<>();
             for (int j=0; j<k; j++){
-                //arr[i+j]
+                int m = arr[i+j];
+                map.put(m, map.getOrDefault(m, 0)+1);
             }
+            System.out.print(map.size() + " ");
         }
-
-
-
     }
 }
 /*
