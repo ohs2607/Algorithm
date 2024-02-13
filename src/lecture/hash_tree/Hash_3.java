@@ -3,6 +3,7 @@ package lecture.hash_tree;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
@@ -25,14 +26,31 @@ public class Hash_3 {
         int[] arr = new int[n];
         for (int i=0; i<n; i++) arr[i] = Integer.parseInt(st2.nextToken());
 
-        int day = (n / k) * k;
-        for (int i=0; i<day; i++){
-            HashMap<Integer, Integer> map = new HashMap<>();
-            for (int j=0; j<k; j++){
-                int m = arr[i+j];
-                map.put(m, map.getOrDefault(m, 0)+1);
+        // 풀이
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i=0; i<k-1; i++){
+            // 0,1,2
+            map.put(arr[i], map.getOrDefault(arr[i], 0)+1);
+        }
+
+        ArrayList<Integer> list = new ArrayList<>();
+
+        /* 두개의 점 잡기 - lt, rt */
+        int lt = 0;
+        for (int rt = k-1; rt<n; rt++){
+            // 오른쪽 지점은 map에 넣은 이후부터 (3)
+            map.put(arr[rt], map.getOrDefault(arr[rt], 0)+1);
+            list.add(map.size());
+
+            map.put(arr[lt], map.get(arr[lt]) - 1);
+
+            if (map.get(arr[lt]) == 0){
+                map.remove(arr[lt]);
             }
-            System.out.print(map.size() + " ");
+            lt++;
+        }
+        for (Integer i : list) {
+            System.out.print(i + " ");
         }
     }
 }
