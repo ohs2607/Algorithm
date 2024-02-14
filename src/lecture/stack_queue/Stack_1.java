@@ -8,7 +8,7 @@ import java.util.Stack;
 /*
     괄호가 입력되면 올바른 괄호이면 “YES", 올바르지 않으면 ”NO"를 출력
 */
-public class Queue_1 {
+public class Stack_1 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
