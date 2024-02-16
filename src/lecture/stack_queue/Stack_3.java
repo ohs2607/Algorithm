@@ -47,10 +47,10 @@ public class Stack_3 {
 
                 // 처음 나온 move 요소가 열이므로 고정
                 if (board[i][moves[x]-1] != 0){
+                    System.out.println("i 언제통과? = " + i);
                     /* 0이 아닌 값이 나오면 스택에 담고 해당 요소를 0으로 바꿈 */
                     stack.push(board[i][moves[x]-1]);
                     board[i][moves[x]-1] = 0;
-                    System.out.println(stack.toString());
                     break;
                 }
             }
