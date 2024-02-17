@@ -29,7 +29,8 @@ public class Hash_3 {
         // 풀이
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int i=0; i<k-1; i++){
-            // 0,1,2
+            // 0,1,2 (4일치를 넣어야 하는거 아닌가?)
+            // 4일치의 매출액 개수를 구해야 하니 4일째부터를 for문을 돌려 확인해야하기 때문
             map.put(arr[i], map.getOrDefault(arr[i], 0)+1);
         }
 
@@ -38,15 +39,25 @@ public class Hash_3 {
         /* 두개의 점 잡기 - lt, rt */
         int lt = 0;
         for (int rt = k-1; rt<n; rt++){
-            // 오른쪽 지점은 map에 넣은 이후부터 (3)
+            // 오른쪽 지점은 k일차가 되는 부분부터 시작
+
+            /* 1.4일차의 매출액과 그 횟수를 넣음 - 이미 있으면 추가 카운팅하기 위해 getOrDefault 사용 */
             map.put(arr[rt], map.getOrDefault(arr[rt], 0)+1);
+
+            /* 2.추가 후 현재 map의 개수를 결과 list에 담음 */
             list.add(map.size());
 
+            /* 3.이제 다음 for문에 들어가면 rt가 하나 옆으로 이동했기 때문에 k일치를 맞추기 위해 lt도 이동하는데
+            * lt를 이동하면서 해당 lt는 이제 k일치에서 빠지게 되니 map의 value인 등장 횟수를 하나 감소시킴
+            *  */
             map.put(arr[lt], map.get(arr[lt]) - 1);
 
+            /* 4.value가 0이 되어도 map.size는 해당 매출액을 카운팅하기 때문에, 아예 map에서 지워버려야함 */
             if (map.get(arr[lt]) == 0){
                 map.remove(arr[lt]);
             }
+
+            /* 5.rt도 옆으로가니 lt도 옆으로 가서 k일 범위를 맞춤 */
             lt++;
         }
         for (Integer i : list) {
